@@ -79,4 +79,19 @@
     window.open(`https://wa.me/5519981767271?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
     const status=document.querySelector('[data-form-status]');if(status)status.textContent='Mensagem preparada. Revise e envie no WhatsApp. Se a janela não abriu, use o botão de contato ao lado.';
   });
+
+  document.querySelectorAll('[data-comparison]').forEach(comparison => {
+    const range = comparison.querySelector('.comparison-range');
+    const stage = comparison.querySelector('.comparison-stage');
+    const update = () => {
+      const value = Number(range.value);
+      stage.style.setProperty('--split', `${value}%`);
+      range.setAttribute('aria-valuetext', `${value}% da simulação anterior e ${100 - value}% do projeto em 3D`);
+    };
+    range.hidden = false;
+    stage.classList.add('is-ready');
+    comparison.querySelector('.comparison-instruction').hidden = false;
+    range.addEventListener('input', update);
+    update();
+  });
 })();
