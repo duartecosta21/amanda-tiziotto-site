@@ -3,7 +3,7 @@
   const motionToggle = document.querySelector('.motion-toggle');
   let manuallyReduced = false;
   const motionIsReduced = () => reducedMotion.matches || manuallyReduced;
-  const motionTargets = [...document.querySelectorAll('.featured-spfc .featured-media button')];
+  const motionTargets = [...document.querySelectorAll('.featured-spfc .featured-media button, .about-portrait')];
   let revealObserver;
   function prepareMotion() {
     revealObserver?.disconnect();
