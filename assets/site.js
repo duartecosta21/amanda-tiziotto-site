@@ -49,13 +49,18 @@
   function signal(name, detail = {}) {document.dispatchEvent(new CustomEvent('site:interest',{detail:{name,...detail}}));}
   document.querySelectorAll('[data-contact]').forEach(link => link.addEventListener('click', () => signal('contact_link_click',{channel:link.dataset.contact,page:document.body.dataset.page})));
   const previewImage = document.querySelector('[data-preview-image]');
+  let animatePreview = false;
   const previewTitle = document.querySelector('[data-preview-title]');
   const previewCredit = document.querySelector('[data-preview-credit]');
   previewImage?.addEventListener('load', () => {
-    if (!motionIsReduced()) previewImage.animate([{opacity:0.45},{opacity:1}], {duration:280,easing:'ease-out'});
+    if (animatePreview && !motionIsReduced()) previewImage.animate([{opacity:0.45},{opacity:1}], {duration:280,easing:'ease-out'});
+    animatePreview = false;
   });
   document.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('[data-preview]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+    animatePreview = true;
+    previewImage.srcset=button.dataset.srcset || '';
+    previewImage.sizes=button.dataset.sizes || '';
     previewImage.src=button.dataset.src;previewImage.alt=button.dataset.alt;previewTitle.textContent=button.dataset.title;previewCredit.textContent=button.dataset.credit;
   }));
   document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
