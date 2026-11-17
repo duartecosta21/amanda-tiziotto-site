@@ -88,7 +88,7 @@ section{padding:clamp(64px,9vw,120px) clamp(16px,5vw,72px)}
 [data-reveal="clip"]{transform:none;opacity:1}
 [data-reveal="clip"] img{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s cubic-bezier(.22,1,.36,1)}
 [data-reveal="clip"].is-in img{clip-path:inset(0)}
-[data-reveal].is-in{opacity:1;transform:none;clip-path:inset(0)}
+[data-reveal].is-in{opacity:1;transform:none;clip-path:none}
 html:not([data-motion=normal]) [data-reveal],html:not([data-motion=normal]) [data-reveal] img{opacity:1;transform:none;clip-path:none;transition:none}
 
 
